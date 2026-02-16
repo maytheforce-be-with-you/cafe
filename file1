@@ -1,1 +1,139 @@
-Hello world from git
+<!DOCTYPE html>
+<html>
+<head>
+<title>Retro Warm Tracker</title>
+
+<style>
+
+body {
+    background: #d8a96a;
+    font-family: Arial;
+    margin: 0;
+    padding: 30px;
+}
+
+.main {
+    max-width: 900px;
+    margin: auto;
+    background: #f3e6c8;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+h2 {
+    color: #0f6b6b;
+    font-family: Georgia;
+}
+
+.inputRow {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #c48c3d;
+    background: #fff8e3;
+    border-radius: 8px;
+}
+
+button {
+    background: #e8a93f;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+}
+
+.section {
+    margin-top: 20px;
+}
+
+.card {
+    background: #fff2d6;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-left: 6px solid #0f6b6b;
+    border-radius: 8px;
+}
+
+.title {
+    color: #0f6b6b;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<div class="main">
+
+<h2>My Places Tracker</h2>
+
+<div class="inputRow">
+<input id="nameInput" placeholder="Name">
+<input id="placeInput" placeholder="Place">
+<button onclick="addItem()">Add</button>
+</div>
+
+<div class="section">
+<div class="title">To Visit</div>
+<div id="pendingSection"></div>
+</div>
+
+<div class="section">
+<div class="title">Visited</div>
+<div id="visitedSection"></div>
+</div>
+
+</div>
+
+<script>
+
+function addItem() {
+
+    var name = document.getElementById("nameInput").value;
+    var place = document.getElementById("placeInput").value;
+
+    if(name == "" || place == "") {
+        alert("Please enter both");
+        return;
+    }
+
+    var card = document.createElement("div");
+    card.className = "card";
+
+    var check = document.createElement("input");
+    check.type = "checkbox";
+
+    check.onclick = function() {
+        moveItem(card);
+    };
+
+    var text = document.createElement("span");
+    text.textContent = name + " , " + place;
+
+    card.appendChild(check);
+    card.appendChild(text);
+
+    document.getElementById("pendingSection").appendChild(card);
+
+    document.getElementById("nameInput").value = "";
+    document.getElementById("placeInput").value = "";
+}
+
+function moveItem(card) {
+    document.getElementById("visitedSection").appendChild(card);
+}
+
+</script>
+
+</body>
+</html>
